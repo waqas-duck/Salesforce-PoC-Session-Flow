@@ -1,0 +1,43 @@
+projectSettings:
+  src: [src]
+  test: [src/__tests__]
+  unitTestFramework: jest
+
+actionSettings:
+  docker:
+    enabled: true
+    imageName: '<ECR-NAME-WITHOUT-SUFFIX>'
+    registry:
+      type: ecr
+      ecr:
+        region: '<AWS_REGION>'
+      creds:
+        source: vault
+        path: <VAULT_SECRET_PATH> <VAULT_KEY> | OIDC_ROLE
+    images:
+      - dockerfile: Dockerfile
+        suffix: '<ECR-SUFFIX>'
+        platforms: 
+          - linux/amd64
+    dev:
+      registry:
+        type: ecr
+        ecr:
+          region: '<AWS_REGION>'
+
+deploy:
+  swimlanes:
+    embark_dev:
+      aws_fargate:
+        cluster_name: '<ECS-CLUSTER-NAME>'
+        service_name: '<ECS-SERVICE-NAME>'
+        executionRoleName: '<ECS-TASK-EXECUTION-ROLE-NAME>'
+        taskRoleName: '<ECS-TASK-ROLE-NAME>'
+        container_def:
+          - name: '<CONTAINER-NAME>'
+            imageURI: <IMAGE_PLACEHOLDER>
+            
+      creds:
+        source: vault
+        path:
+          - <VAULT_SECRET_PATH> <VAULT_KEY> | AWS_ROLE_TO_ASSUME

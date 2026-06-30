@@ -1,0 +1,12 @@
+pandas
+numpy
+boto3
+botocore
+beautifulsoup4
+sentence-transformers
+snowflake-connector-python
+scipy
+scikit-learn
+ollama
+openai
+openpyxl
