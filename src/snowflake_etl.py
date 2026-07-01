@@ -600,7 +600,7 @@ prompt = "Extract only factual information about the person from the provided te
 
 messages = [{
     "role": "user",
-    "content": ("Please find professional linkedin information and create short summary about the  " + attendee_desc + ". Please do not write anything about you could't do."),
+    "content": ("Please find professional linkedin information and create short summary about the  <<<" + attendee_desc + ">>>. Please do not write anything about you could't do."),
     },]
 response = chat(model="llama3.2:latest", messages=messages)
 logger.info("Ollama response: %s", response.message.content)
