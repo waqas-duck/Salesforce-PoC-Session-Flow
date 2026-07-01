@@ -48,7 +48,7 @@ conn_params = {
     'authenticator': 'SNOWFLAKE_JWT',
     'private_key': util.get_private_key_from_secrets_manager(),
     'warehouse': 'WH_MLI_ETL',
-    'database': 'SSE_DM_MKT_BROKEN',
+    'database': 'SSE_DM_MKT_PRD',
     'schema': 'WRK_TRUTH_PROFILE'
 }
 ctx = sf.connect(**conn_params)
