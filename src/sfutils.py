@@ -1139,7 +1139,7 @@ def calc_rating(attendance_df, events = None, today = pd.Timestamp.today().norma
     attendance_df['rating'] = attendance_type_weights['default']
     attendance_df.loc[attendance_df['ATTENDANCE_STATUS'].isin(['scheduled']),'rating'] = attendance_type_weights['scheduled']
     attendance_df.loc[attendance_df['ATTENDANCE_STATUS'].isin(['waitlisted']),'rating'] = attendance_type_weights['waitlisted']
-    attendance_df.loc[attendance_df['ATTENDANCE_STATUS'].isin(['attended']),'rating'] = attendance_type_weights['waitlisted']
+    attendance_df.loc[attendance_df['ATTENDANCE_STATUS'].isin(['attended']),'rating'] = attendance_type_weights['attended']
     attendance_df.loc[attendance_df['ATTENDANCE_STATUS'].isin(['bookmark']),'rating'] = attendance_type_weights['bookmark']
     
     if('SESSION_DATETIME' not in attendance_df.columns):        
