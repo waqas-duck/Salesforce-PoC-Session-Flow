@@ -389,10 +389,10 @@ if calc_recs:
     # make sure to take only past sessions
     past_attendance_real = past_attendance.loc[~past_attendance['SESSION_ID'].isin(event_sessions['SESSION_ID'])].copy()
     # cals rating
-    past_attendance_real['rating'] = sutil.calc_rating(past_attendance, events, today = today, t_half = t_half)
+    past_attendance_real['rating'] = sutil.calc_rating(past_attendance, events, today = today, recs_params = recs_params)
     event_similarities = session_sims[event_sessions['SESSION_ID']].copy()
     event_similarities = event_similarities.loc[~event_similarities.index.isin(event_sessions['SESSION_ID'])]
-    event_similarities = sutil.update_similarities(event_similarities, top_n = event_sim_size, mult = 0.01)
+    event_similarities = sutil.update_similarities(event_similarities, recs_params)
     logger.info("event_similarities size: %s", event_similarities.shape)        
     ret_recs = sutil.calc_users_recs(event_users_before, past_attendance_real, event_similarities, user_sessions_filter, events=None, ret_recs_size=ret_recs_size)
     event_similarities = None
@@ -468,14 +468,14 @@ sim_size = 1
 
 session_similarities = session_sims[event_sessions['SESSION_ID']].copy()
 session_similarities = session_similarities.loc[~session_similarities.index.isin(event_sessions['SESSION_ID'])]
-session_similarities = sutil.update_similarities(session_similarities, top_n = sim_size, mult = 0.01)
+session_similarities = sutil.update_similarities(session_similarities, recs_params)
 
 if calc_recs:
     event_embeddings = session_embeddings.select(list(event_sessions["SESSION_ID"]))
     session_room = session_room.loc[session_room['SESSION_ID'].isin(event_sessions['SESSION_ID'])]
     session_room = session_room.loc[~session_room['SESSION_ID'].isin(['1757341755688001xPnC','1757341479770001hjRw','1757341894165001lPa6'])]
     #ret_recs = sutil.calc_cold_start_recs_nn(cold_start_users, past_attendance, user_similarities, session_similarities, user_nn_size, ret_recs_size)
-    ret_recs = sutil.calc_combined_cold_start_recs(user_id, user_similarities, session_similarities, user_embeddings, event_embeddings, past_attendance, session_room, recs_params)
+    ret_recs = sutil.calc_combined_cold_start_recs(user_id, user_similarities, session_similarities, user_embeddings, event_embeddings, past_attendance, event_sessions, session_room, user_sessions_filter, recs_params)
     
 len(set(ret_recs['ATTENDEE_ID']))
 
@@ -524,7 +524,7 @@ event_embeddings.shape()
 ret_recs_size = 1600
 recs_params["ret_recs_size"] = ret_recs_size
 
-user_ret_recs_tmp = sutil.calc_combined_cold_start_recs(user_id, user_similarities, session_similarities, user_embeddings, event_embeddings, past_attendance, session_room, recs_params)
+user_ret_recs_tmp = sutil.calc_combined_cold_start_recs(user_id, user_similarities, session_similarities, user_embeddings, event_embeddings, past_attendance, event_sessions, session_room, user_sessions_filter, recs_params)
 user_ret_recs_tmp
 
 sutil.show_nice_recs(user_ret_recs_tmp, event_sessions)
