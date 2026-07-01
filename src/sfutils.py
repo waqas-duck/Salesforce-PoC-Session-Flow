@@ -141,6 +141,8 @@ def get_attendee(attendee, first_name, last_name):
 
 ###################################
 def calc_session_embeddings(sessions, speakers):
+    sessions = sessions.copy()
+    speakers = speakers.copy()
     #len(sessions)    
     #session_filter(sessions, True).to_csv(data_path + "sessions_filtered.csv", index = False)
     sessions['KEY_TAKEAWAYS_BY_EINSTEIN'] = sessions['KEY_TAKEAWAYS_BY_EINSTEIN'].apply(clean_html)
@@ -1133,6 +1135,7 @@ def calc_half_decay(n0, t, t_half):
 
 ###################################
 def calc_rating(attendance_df, events = None, today = pd.Timestamp.today().normalize(), recs_params=None):
+    attendance_df = attendance_df.copy()
     
     t_half = recs_params.get('time_half_decay',365)
     attendance_type_weights = recs_params.get('attendance_type_weights',{'default': 0,'scheduled': 1,'waitlisted': 4,'attended': 5,'bookmark': 4})
