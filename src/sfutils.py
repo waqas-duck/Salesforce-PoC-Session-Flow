@@ -252,7 +252,7 @@ def get_user_attendance(user_id, past_attendance, events = None):
 #user_id = user_nn_id[:user_nn_size]
 #user_id = event_users_returning_id[1]
 def calc_user_candidates(user_id, past_attendance, session_similarities, events = None, norm_score = True):    
-    user_attendance = get_user_attendance(user_id, past_attendance, events = None)
+    user_attendance = get_user_attendance(user_id, past_attendance, events = events)
     user_attendance = user_attendance[['ATTENDEE_ID','SESSION_ID','rating']]
                 
     user_similarities = session_similarities[session_similarities.index.isin(set(user_attendance['SESSION_ID']))]
