@@ -134,7 +134,7 @@ def get_private_key_from_secrets_manager(
     if remove_padding:
         lines = secret.splitlines()
         body_lines = [line for line in lines if not line.startswith("-----")]
-        secret = " ".join(body_lines)
+        secret = "\n".join(body_lines)
 
     return secret
 
