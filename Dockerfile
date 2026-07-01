@@ -36,4 +36,8 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=40s \
 
 EXPOSE 3000
 
+# NOTE: This image intentionally ships ONLY the Express health-check service.
+# The Python recommendation pipeline (src/*.py) is an offline, operator-run batch
+# job and is deliberately not packaged in this container. Do not assume the
+# recommender is reachable from this image; it is not.
 CMD ["node", "dist/server.js"]
