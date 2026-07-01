@@ -1151,8 +1151,6 @@ def calc_rating(attendance_df, events = None, today = pd.Timestamp.today().norma
     today = pd.Timestamp(today).normalize()
     attendance_df["days"] = (today - pd.to_datetime(attendance_df["START_DATE"])).dt.days    
     new_rating = attendance_df.apply(lambda row: calc_half_decay(row['rating'], row["days"], t_half), axis=1)
-    if('rating' in attendance_df.columns):
-        new_rating = new_rating * attendance_df['rating']
     attendance_df.drop(columns=['START_DATE', 'days'], inplace = True)
 
     return new_rating
