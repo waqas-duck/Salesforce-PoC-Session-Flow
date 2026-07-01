@@ -5,6 +5,7 @@ General utility helpers for SessionFlow.
 """
 
 import logging
+import os
 import sys
 
 import boto3
@@ -121,7 +122,7 @@ def get_secret():
 
 #################################
 def get_private_key_from_secrets_manager(
-    secret_arn: str = "arn:aws:secretsmanager:us-east-2:211125482819:secret:mli-snowflake-private-key-lkKe7m",
+    secret_arn: str = os.environ.get("SNOWFLAKE_KEY_SECRET_ARN", ""),
     region_name: str = "us-east-2",
     remove_padding: bool = True,
     ) -> str:
