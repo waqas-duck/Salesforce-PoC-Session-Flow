@@ -310,6 +310,20 @@ def calc_user_embedding(user_id, past_attendance, session_embeddings_df):
     return user_embedding
 
 ###################################
+def session_filter(df, keep=True, version=2):
+    """Filter sessions to the recommendable set.
+
+    The filtering logic lives in sfloader._session_filter; this thin public
+    delegate is kept so callers using `sutil.session_filter(...)` resolve
+    (the symbol had moved onto the sfloader class). Lazy imports avoid any
+    import cycle (sfloader/sfconfig do not import sfutils).
+    """
+    from sfconfig import sfconfig
+    from sfloader import sfloader
+    return sfloader(sfconfig())._session_filter(df, keep=keep, version=version)
+
+
+###################################
 def get_sessions_filter(attendee, sessions):
     ret_filter = []
     #GA users filter
