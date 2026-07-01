@@ -330,10 +330,10 @@ user_ret_recs_nn = sutil.calc_cold_start_recs_nn(event_users_returning_id, past_
 user_ret_recs_emb = sutil.calc_cold_start_recs_emb(event_users_returning_id, attendee_embeddings, event_session_embeddings, user_sessions_filter, recs_params, ret_recs_size).copy()
 
 
-attendee_mli.loc[attendee_mli['EMAIL']=='rhandt@salesforce.com','ATTENDEE_ID']
+attendee_mli.loc[attendee_mli['EMAIL']=='user1@example.com','ATTENDEE_ID']
 
-user_id = '1765818109552001ET2S' #   rhandt@salesforce.com
-#user_id = '1772647553672001tEe7' #   dhamerla@salesforce.com
+user_id = '1765818109552001ET2S' #   user1@example.com
+#user_id = '1772647553672001tEe7' #   user4@example.com
 
 attendee_similarity[attendee_similarity['ATTENDEE_IN'].isin([user_id])].merge(event_attendee[['ATTENDEE_ID','description']], how='left', left_on='ATTENDEE_OUT', right_on='ATTENDEE_ID')
 
@@ -354,11 +354,11 @@ user_ret_recs_emb = sutil.calc_cold_start_recs_emb([user_id], attendee_embedding
 sutil.show_nice_recs(user_ret_recs_emb, event_sessions)
 
 
-user_id = '1765818109552001ET2S' #   rhandt@salesforce.com
+user_id = '1765818109552001ET2S' #   user1@example.com
 user_recs = sutil.calc_combined_cold_start_recs(user_id, attendee_similarity, event_session_similarity, attendee_embeddings, event_session_embeddings, past_attendance, event_sessions, session_room, user_sessions_filter, recs_params)
 sutil.show_nice_recs(user_recs[0:ret_recs_size], event_sessions)
 
-user_id = '1772647553672001tEe7' #   dhamerla@salesforce.com
+user_id = '1772647553672001tEe7' #   user4@example.com
 user_recs = sutil.calc_combined_cold_start_recs(user_id, attendee_similarity, event_session_similarity, attendee_embeddings, event_session_embeddings, past_attendance, event_sessions, session_room, user_sessions_filter, recs_params)
 sutil.show_nice_recs(user_recs[0:ret_recs_size], event_sessions)
 

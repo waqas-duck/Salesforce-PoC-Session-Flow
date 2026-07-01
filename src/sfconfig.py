@@ -16,10 +16,10 @@ class sfconfig:
         self.tmp_path = '/Users/mdraminski/TEMP4/'
         self.results_path = '/Users/mdraminski/Workspace/SessionFlow/Results/'
         self.attendee_mli_email = [
-            'rhandt@salesforce.com',
-            'hchipman@salesforce.com',
-            'peter.gee@salesforce.com',
-            'dhamerla@salesforce.com',
+            'user1@example.com',
+            'user2@example.com',
+            'user3@example.com',
+            'user4@example.com',
         ]
 
         self.data_focus_columns = {

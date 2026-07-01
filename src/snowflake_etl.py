@@ -117,7 +117,7 @@ data_focus_columns = {
 data_path = '/Users/mdraminski/Workspace/SessionFlow/data/'
 tmp_path = '/Users/mdraminski/TEMP4/'
 results_path = '/Users/mdraminski/Workspace/SessionFlow/Results/' 
-attendee_mli_email = ['rhandt@salesforce.com', 'hchipman@salesforce.com','peter.gee@salesforce.com','dhamerla@salesforce.com']
+attendee_mli_email = ['user1@example.com', 'user2@example.com','user3@example.com','user4@example.com']
 
 
 ######################
@@ -537,8 +537,8 @@ sutil.show_nice_recs(user_ret_recs_tmp, event_sessions)
 user_ret_recs = user_ret_recs_tmp
 
 user_id = '1761600970066001MdwW'
-attendee[attendee['EMAIL']=='ben.morris@salesforce.com']
-attendee[attendee['EMAIL']=='mgelbman@salesforce.com']
+attendee[attendee['EMAIL']=='user5@example.com']
+attendee[attendee['EMAIL']=='user6@example.com']
 
 user_id = '1749505213948001egcn'
 
