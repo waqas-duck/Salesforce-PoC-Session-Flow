@@ -45,7 +45,7 @@ class embeddings:
             names = list(names)
 
         rownames = np.array(self.rownames)
-        mask = ~np.isin(rownames, np.array(names))
+        mask = np.isin(rownames, np.array(names))
 
         return self.__class__(
             embeddings=self.embeddings[mask, :],
