@@ -6,7 +6,7 @@ Created on Fri Apr 17 17:41:43 2026
 @author: mdraminski
 """
 
-from sentence_transformers import SentenceTransformers
+from sentence_transformers import SentenceTransformer
 
 # 1. Load a pretrained Sentence Transformer model
 model = SentenceTransformer("all-MiniLM-L6-v2")
