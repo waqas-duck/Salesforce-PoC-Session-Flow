@@ -284,7 +284,6 @@ user_embeddings = embeddings(user_embeddings, event_attendee['ATTENDEE_ID'])
 
 #Count event attendee status
 user_sessions_filter = sutil.get_sessions_filter(event_attendee, event_sessions)
-user_sessions_filter = None
 
 event_attendee_cnt = pd.DataFrame(event_attendee['STATUS'].value_counts()).reset_index()
 event_attendee_cnt.columns = ['STATUS','Attendees']

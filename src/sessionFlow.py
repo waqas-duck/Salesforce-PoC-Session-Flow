@@ -268,7 +268,6 @@ logger.info("event_session_similarity size: %s", event_session_similarity.shape)
 
 ### GET Session Filter ###
 user_sessions_filter = sutil.get_sessions_filter(event_attendee, event_sessions)
-user_sessions_filter = None
 
 ###### CALC RET_RECS - candidates recs based on past_attendance
 ret_recs = sutil.calc_users_recs(
