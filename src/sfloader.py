@@ -20,7 +20,7 @@ class sfloader:
         self.data_focus_columns = self.config.data_focus_columns
         self.attendee_mli_email = self.config.attendee_mli_email
 
-    def load_csv(self filename, **read_csv_kwargs):
+    def load_csv(self, filename, **read_csv_kwargs):
         return pd.read_csv(os.path.join(self.data_path, filename), **read_csv_kwargs)
 
     ###############################

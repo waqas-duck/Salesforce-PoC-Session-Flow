@@ -171,7 +171,7 @@ def df_row_to_text(df, col_map):
 
 ###################################
 def clean_html(text):
-    if pd.isna(text)
+    if pd.isna(text):
         return text
 
     soup = BeautifulSoup(text, "html.parser")
