@@ -562,9 +562,10 @@ def calc_combined_cold_start_recs(user_id, user_similarities, session_similariti
 ###################################
 def get_nn_users(user_id, user_similarities, event_attendee):
     user_sim = user_similarities.loc[user_similarities['ATTENDEE_IN']==user_id]
+    _self_desc = event_attendee.loc[event_attendee['ATTENDEE_ID']==user_id,'description']
     user_sim.loc[len(user_sim)] = {
-        "ATTENDEE_IN": user_id, "ATTENDEE_OUT": user_id, "score": 1.0,    
-        "description": event_attendee.loc[event_attendee['ATTENDEE_ID']==user_id,'description'].iloc[0]}
+        "ATTENDEE_IN": user_id, "ATTENDEE_OUT": user_id, "score": 1.0,
+        "description": _self_desc.iloc[0] if not _self_desc.empty else ""}
     user_sim = user_sim.sort_values('score', ascending = False).reset_index(drop=True)
     user_sim = user_sim.merge(event_attendee[['ATTENDEE_ID','description']] , how='left', left_on = 'ATTENDEE_OUT', right_on='ATTENDEE_ID')
     

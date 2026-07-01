@@ -225,7 +225,10 @@ calc_recs = False
 add_mli_users = True
 
 ### TABLE ** EVENTS **  ###
-event_date = events.loc[events['EVENTCODE'].isin([eventcode]),'END_DATE'].iloc[0]
+_event_end_dates = events.loc[events['EVENTCODE'].isin([eventcode]),'END_DATE']
+if _event_end_dates.empty:
+    raise ValueError(f"No event found for eventcode={eventcode!r}")
+event_date = _event_end_dates.iloc[0]
 past_events = events.loc[events['END_DATE'] < event_date,'EVENTCODE']
 #events.loc[events['EVENTCODE'].isin(past_events)].to_csv('~/events.csv')
 event_row = events.loc[events['EVENTCODE']==eventcode, data_focus_columns['events']]
