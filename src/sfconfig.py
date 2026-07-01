@@ -67,7 +67,7 @@ class sfconfig:
         }
 
         self.recs_params = {
-            'ret_recs_size': -30,
+            'ret_recs_size': 30,
             'ret_recs_size_mult': 2,
             'session_sim_size': 1,
             'session_sim_mult': 0.01,
