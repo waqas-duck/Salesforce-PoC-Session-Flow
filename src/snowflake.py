@@ -395,7 +395,7 @@ if calc_recs:
     event_similarities = event_similarities.loc[~event_similarities.index.isin(event_sessions['SESSION_ID'])]
     event_similarities = sutil.update_similarities(event_similarities, top_n = event_sim_size, mult = 0.01)
     logger.info("event_similarities size: %s", event_similarities.shape)        
-    ret_recs = sutil.calc_user_recs(event_users_before, past_attendance_real, event_similarities, user_sessions_filter, events=None, ret_recs_size=ret_recs_size)
+    ret_recs = sutil.calc_users_recs(event_users_before, past_attendance_real, event_similarities, user_sessions_filter, events=None, ret_recs_size=ret_recs_size)
     event_similarities = None
     
     
@@ -633,5 +633,5 @@ len(set(meetings['ATTENDEE_ID']))
 
 
 ###################
-sim_users = sutil.calc_user_similarities_from_attendance(meetings, top_n=10, batch_size=1000)
-sim_users = sutil.calc_user_similarities_from_attendance(past_attendance, top_n=10, batch_size=1000)
+sim_users = sutil.calc_user_similarity_from_attendance(meetings, top_n=10, batch_size=1000)
+sim_users = sutil.calc_user_similarity_from_attendance(past_attendance, top_n=10, batch_size=1000)
