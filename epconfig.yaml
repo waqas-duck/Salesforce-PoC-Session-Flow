@@ -1,3 +1,6 @@
+# NOTE: the values below are project defaults for scaffolding. Replace the ECR
+# registry, AWS region, vault path/key, and ECS cluster/service/role names with
+# your environment's real values before a production deploy.
 projectSettings:
   src: [src]
   test: [src/__tests__]
@@ -6,38 +9,38 @@ projectSettings:
 actionSettings:
   docker:
     enabled: true
-    imageName: '<ECR-NAME-WITHOUT-SUFFIX>'
+    imageName: 'session-flow'
     registry:
       type: ecr
       ecr:
-        region: '<AWS_REGION>'
+        region: 'us-east-2'
       creds:
         source: vault
-        path: <VAULT_SECRET_PATH> <VAULT_KEY> | OIDC_ROLE
+        path: secret/data/session-flow aws | OIDC_ROLE
     images:
       - dockerfile: Dockerfile
-        suffix: '<ECR-SUFFIX>'
+        suffix: 'api'
         platforms: 
           - linux/amd64
     dev:
       registry:
         type: ecr
         ecr:
-          region: '<AWS_REGION>'
+          region: 'us-east-2'
 
 deploy:
   swimlanes:
     embark_dev:
       aws_fargate:
-        cluster_name: '<ECS-CLUSTER-NAME>'
-        service_name: '<ECS-SERVICE-NAME>'
-        executionRoleName: '<ECS-TASK-EXECUTION-ROLE-NAME>'
-        taskRoleName: '<ECS-TASK-ROLE-NAME>'
+        cluster_name: 'session-flow-cluster'
+        service_name: 'session-flow-svc'
+        executionRoleName: 'session-flow-exec-role'
+        taskRoleName: 'session-flow-task-role'
         container_def:
-          - name: '<CONTAINER-NAME>'
-            imageURI: <IMAGE_PLACEHOLDER>
+          - name: 'session-flow'
+            imageURI: session-flow:latest
             
       creds:
         source: vault
         path:
-          - <VAULT_SECRET_PATH> <VAULT_KEY> | AWS_ROLE_TO_ASSUME
+          - secret/data/session-flow aws | AWS_ROLE_TO_ASSUME

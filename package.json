@@ -1,7 +1,7 @@
 {
   "name": "@store-sfdcbt-net/mli-sessionflow-tmp",
   "version": "1.0.0",
-  "description": "{{APP_DESCRIPTION}}",
+  "description": "Salesforce session-flow recommender health service",
   "main": "dist/server.js",
   "types": "dist/server.d.ts",
   "scripts": {

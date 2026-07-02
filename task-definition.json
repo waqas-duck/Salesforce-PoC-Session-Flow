@@ -1,13 +1,13 @@
 {
-  "family": "{{PROJECT_NAME}}",
+  "family": "session-flow",
   "requiresCompatibilities": ["FARGATE"],
   "networkMode": "awsvpc",
   "cpu": "256",
   "memory": "1024",
   "containerDefinitions": [
     {
-      "name": "<CONTAINER_NAME>",
-      "image": "<IMAGE_PLACEHOLDER>",
+      "name": "session-flow",
+      "image": "session-flow:latest",
       "essential": true,
       "portMappings": [
         {
