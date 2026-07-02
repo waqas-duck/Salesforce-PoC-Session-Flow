@@ -396,7 +396,7 @@ if __name__ == "__main__":
         event_similarities = event_similarities.loc[~event_similarities.index.isin(event_sessions['SESSION_ID'])]
         event_similarities = sutil.update_similarities(event_similarities, recs_params)
         logger.info("event_similarities size: %s", event_similarities.shape)        
-        ret_recs = sutil.calc_users_recs(event_users_before, past_attendance_real, event_similarities, user_sessions_filter, events=None, ret_recs_size=ret_recs_size)
+        ret_recs = sutil.calc_users_recs(event_users_before, past_attendance_real, event_similarities, user_sessions_filter, events=None, recs_params=recs_params)
         event_similarities = None
     
     
